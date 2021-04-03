@@ -19,7 +19,7 @@ const styles = {
 const App = () => {
   return (
     // Wrapper to send JSX as one element.
-    // Classname replaces class attribute.
+    // Classname replaces HTML class attribute.
     <>
       <h1 className='something'>Hello world!</h1>
 
