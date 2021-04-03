@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+// How to create react elements without JSX
+// React.createElement({
+//   type: 'h1',
+//   content: 'Hello World!'
+// })
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // Wrapper to send JSX as one element.
+    // Classname replaces class attribute.
+    <>
+      <h1 className='something'>Hello world!</h1>
+      <li>Hello world!</li>
+      {/* Self closing elements in HTML need a closing tag in JSX */}
+      <input type='text' />
+      {/* For attribute is replaced with htmlFor. */}
+      <label htmlFor='id' />
+    </>
+  )
 }
 
-export default App;
+export default App
