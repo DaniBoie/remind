@@ -1,42 +1,53 @@
-import React from 'react'
-import './App.css'
+import { render } from '@testing-library/react'
+import React, { Component } from 'react'
 
-// How to create react elements without JSX
-// React.createElement({
-//   type: 'h1',
-//   content: 'Hello World!'
-// })
+// Smart componenets handle functionality and hold values.
+// Create subclass of component class and use parent function render() as we did before.
+// As it is a class, any functions / variables within it start with this.var
 
-const num = 5
+class App extends Component {
 
-// Global styling objects to use in components
-const styles = {
-  heading: {
-    color: 'red'
+  state = {
+    count: 0
+  }
+
+
+  // Event listeners "onClick, onChange, etc. have an event parameter."
+  handleBtnClick = event => {
+    // Event object holds JSON object of the event taken place, including specific HTML elements on the page.
+    console.log(event)
+    console.log(event.target)
+    console.log(event.target.value)
+    console.log(event.target.innerHTML)
+
+    //Instead of this.state.count += 1
+    // Use setState method in Component parent class to chance variables in state object.
+    if (event.target.value == '+') {
+      this.setState({ count: this.state.count + 1 })
+    } else {
+      this.setState({ count: this.state.count - 1})
+    }
+    
+  }
+
+  render () {
+    return (
+      <>
+        <h1>Count: {this.state.count}</h1>
+        <button onClick={this.handleBtnClick} value={'+'}>+1</button>
+        <button onClick={this.handleBtnClick} value={'-'}>-1</button>
+      </>
+    )
   }
 }
 
-const App = () => {
-  return (
-    // Wrapper to send JSX as one element.
-    // Classname replaces class attribute.
-    <>
-      <h1 className='something'>Hello world!</h1>
-
-      {/* To input variables into JSX use { var } syntax, any javascript code works */}
-      <li>{num * 18}</li>
-
-      {/* To add styles, use dot notation to look into styles dict and find specific styles dict. */}
-      {/* A more organized method for longer pages is to create a css page, import and use it here. Ex. id */}
-      <h2 style={styles.heading} id='heading'>Hello Friends!</h2>
-
-      {/* Self closing elements in HTML need a closing tag in JSX */}
-      <input type='text' />
-
-      {/* For attribute is replaced with htmlFor. */}
-      <label htmlFor='id' />
-    </>
-  )
-}
+// const App = () => {
+//   return (
+//     <>
+//       <h1>Hello World!</h1>
+//       <button>Click ME!</button>
+//     </>
+//   )
+// }
 
 export default App
